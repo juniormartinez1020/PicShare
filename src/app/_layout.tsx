@@ -1,6 +1,7 @@
 import "../../global.css";
-import {  Stack } from "expo-router";
+import {  Link, Stack } from "expo-router";
 import { DarkTheme, ThemeProvider } from "@react-navigation/native";
+import { Ionicons } from '@expo/vector-icons';
 
 export default function RootLayout() {
     return (
@@ -11,6 +12,28 @@ export default function RootLayout() {
                 options={{ 
                     title: 'Event',
                     headerLargeTitle: true
+                }}
+                />
+
+                <Stack.Screen
+                name="camera"
+                options={{ 
+                    title: 'Camera',
+                    headerBackButtonDisplayMode: 'minimal',
+                    headerTransparent: true,
+                    headerBlurEffect: 'dark',
+                    headerRight: () => (
+                        <Link
+                        href='/'
+                        className="mr-2 ml-2"
+                        >
+                            <Ionicons
+                         name="share-outline" 
+                         size={24} 
+                         color="white" 
+                         />
+                        </Link>
+                    )
                 }}
                 />
             </Stack>
