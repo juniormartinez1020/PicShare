@@ -3,6 +3,7 @@ import { useRef, useState } from 'react';
 import { ActivityIndicator, Button, Pressable, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons'
+import { uploadToCloudinary } from '../lib/cloudinary';
 
 export default function CameraScreen() {
   const [facing, setFacing] = useState<CameraType>('back');
@@ -31,8 +32,11 @@ export default function CameraScreen() {
 
  async function takePhoto() {
     console.log('take photo')
-   const pic = await cam.current?.takePictureAsync()
-   console.log(JSON.stringify(pic, null, 2))
+   const photo = await cam.current?.takePictureAsync()
+     if(!photo?.uri) return 
+
+     const cloudinaryResponse = await uploadToCloudinary(photo.uri)
+     console.log(JSON.stringify(cloudinaryResponse, null, 2))
   }
 
   return (
