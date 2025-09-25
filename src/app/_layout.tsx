@@ -2,10 +2,15 @@ import "../../global.css";
 import {  Link, Stack } from "expo-router";
 import { DarkTheme, ThemeProvider } from "@react-navigation/native";
 import { Ionicons } from '@expo/vector-icons';
+import AuthProvider from "../providers/AuthProvider";
 
 export default function RootLayout() {
+
+    
+
     return (
         <ThemeProvider value={DarkTheme}>
+         <AuthProvider>
             <Stack>
                 <Stack.Screen
                 name="index"
@@ -37,6 +42,7 @@ export default function RootLayout() {
                 }}
                 />
             </Stack>
+        </AuthProvider>
         </ThemeProvider>
     )
 }
