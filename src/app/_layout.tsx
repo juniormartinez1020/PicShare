@@ -3,13 +3,15 @@ import {  Link, Stack } from "expo-router";
 import { DarkTheme, ThemeProvider } from "@react-navigation/native";
 import { Ionicons } from '@expo/vector-icons';
 import AuthProvider from "../providers/AuthProvider";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+
+
+const queryClient = new QueryClient()
 
 export default function RootLayout() {
-
-    
-
     return (
-        <ThemeProvider value={DarkTheme}>
+    <ThemeProvider value={DarkTheme}>
+      <QueryClientProvider client={queryClient}>
          <AuthProvider>
             <Stack>
                 <Stack.Screen
@@ -43,6 +45,7 @@ export default function RootLayout() {
                 />
             </Stack>
         </AuthProvider>
+        </QueryClientProvider>
         </ThemeProvider>
     )
 }
