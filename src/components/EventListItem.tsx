@@ -1,5 +1,6 @@
-import { Text, View } from "react-native";
+import { Pressable, Text, View } from "react-native";
 import { Tables } from "../types/database.types";
+import { Link } from "expo-router";
 
 
 type Event = Tables<'events'>
@@ -10,14 +11,16 @@ type EventListItemProps = {
 
 export default function EventListItem({ event }: EventListItemProps ) {
     return (
-        <View
-        className="bg-neutral-950 p-4 rounded-lg"
-        >
-            <Text
-                className="text-slate-50 text-2xl font-bold"
+        <Link href={`/events/${event.id}`} asChild>
+            <Pressable
+                className="bg-neutral-950 p-4 rounded-lg"
             >
-                {event.name}
-            </Text>
-        </View>
+                <Text
+                    className="text-slate-50 text-2xl font-bold"
+                >
+                    {event.name}
+                </Text>
+            </Pressable>
+        </Link>
     )
 }

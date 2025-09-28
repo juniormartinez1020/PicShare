@@ -18,7 +18,20 @@ export default function RootLayout() {
                 name="index"
                 options={{ 
                     title: 'Event',
-                    headerLargeTitle: true
+                    headerLargeTitle: true,
+                    headerTransparent: true,
+                    headerBackButtonDisplayMode: 'minimal'
+                }}
+                />
+
+
+                <Stack.Screen
+                name="events/[id]/camera"
+                options={{
+                    title: 'Event',
+                    headerLargeTitle: true,
+                    headerBackButtonDisplayMode: 'minimal',
+                    headerTransparent: true
                 }}
                 />
 

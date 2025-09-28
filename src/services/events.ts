@@ -8,3 +8,14 @@ export async function getEvents() {
 
       return data
 }
+
+export async function getEvent(id: string) {
+    const { data } = await supabase
+      .from('events')
+      .select('*, assets(*)')
+      .eq("id", id)
+      .throwOnError()
+      .single()
+
+      return data
+}
