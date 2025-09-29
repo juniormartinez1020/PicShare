@@ -1,7 +1,9 @@
-import { ActivityIndicator, FlatList, Text, View } from "react-native";
+import { ActivityIndicator, FlatList, Pressable, Text, View } from "react-native";
 import { useQuery } from "@tanstack/react-query";
 import { getEvents } from "../services/events";
 import EventListItem from "../components/EventListItem";
+import { Ionicons } from '@expo/vector-icons'
+import { Link } from "expo-router";
 
 
 export default function Home() {
@@ -32,6 +34,23 @@ export default function Home() {
            <EventListItem event={item} />
             }
             contentInsetAdjustmentBehavior="automatic"
+            ListHeaderComponent={() => (
+              <Link href='/events/create' asChild>
+                <Pressable className="bg-green-800 mt-10 p-4 rounded-lg
+                items-center justify-center flex-row gap-2">
+                  <Ionicons 
+                  name='add-outline'
+                  size={30}
+                  color='whitesmoke'
+                  />
+                  <Text
+                  className="text-slate-50 text-lg font-semibold"
+                  >
+                    create event
+                  </Text>
+                </Pressable>
+              </Link>
+            )}
           />
       </View>
   )

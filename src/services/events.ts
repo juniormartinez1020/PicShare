@@ -1,3 +1,4 @@
+import { TablesInsert } from "@/types/database.types"
 import { supabase } from "../lib/supabase"
 
 export async function getEvents() {
@@ -18,4 +19,17 @@ export async function getEvent(id: string) {
       .single()
 
       return data
+}
+
+
+export async function createEvent(newEvent: TablesInsert<'events'>) {
+  const { data } = await supabase
+    .from('events')
+    .insert(newEvent)
+    .select()
+    .single()
+    .throwOnError()
+
+    
+    return data
 }
