@@ -36,7 +36,17 @@ export default function EventDetailing() {
         <View className="mt-52 flex-1">
             <Stack.Screen
              options={{ 
-                title: event.name
+                title: event.name,
+                headerRight: () => (
+                    <Link href={`/events/${id}/share`} asChild>
+                        <Ionicons
+                            name='share-outline'
+                            size={30}
+                            color='whitesmoke'
+                            className='mr-2 mt-2'
+                        />
+                    </Link>
+                )
             }}
             />
 

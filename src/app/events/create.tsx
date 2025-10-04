@@ -14,7 +14,9 @@ export default function CreateEvent() {
     const queryClient = useQueryClient()
 
     const createEventMutate = useMutation({
-        mutationFn: () => createEvent({ name, owner_id: user?.id }),
+        mutationFn: () => createEvent({ name, owner_id: user?.id },
+            user!.id
+        ),
         onSuccess: (data) => {
             setName('')
             queryClient.invalidateQueries({

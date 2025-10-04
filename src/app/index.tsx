@@ -1,20 +1,30 @@
 import { ActivityIndicator, FlatList, Pressable, Text, View } from "react-native";
 import { useQuery } from "@tanstack/react-query";
-import { getEvents } from "../services/events";
+import { getEventForUser, getEvents } from "../services/events";
 import EventListItem from "../components/EventListItem";
 import { Ionicons } from '@expo/vector-icons'
 import { Link } from "expo-router";
+import { useAuth } from "@/providers/AuthProvider";
 
 
 export default function Home() {
+  
+  const { user } = useAuth()
+
  const { data, isLoading, error } = useQuery({
     queryKey: ['events'],
-    queryFn: getEvents
+    queryFn: () => getEventForUser(user!.id)
   })
 
 
   if (isLoading) {
-    return <ActivityIndicator />
+    return (
+      <View
+      className="flex-1 justify-center items-center"
+      >
+        <ActivityIndicator />
+      </View>
+    )
   }
 
   if (error) {
